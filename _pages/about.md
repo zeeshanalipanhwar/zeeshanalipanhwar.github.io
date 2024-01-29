@@ -2,16 +2,16 @@
 layout: about
 title: about
 permalink: /
-subtitle: <a href='#'>Affiliations</a>. Address. Contacts. Moto. Etc.
+subtitle: <a href='https://www.sundarstem.edu.pk/'>Sundar STEM School</a>. Math and Computer Science Teacher.
 
 profile:
   align: right
   image: prof_pic.png
   image_circular: false # crops the image to make it circular
   more_info: >
-    <p>555 your office number</p>
-    <p>123 your address street</p>
-    <p>Your City, State 12345</p>
+    <p>+92 341 0881676</p>
+    <p>House 980/11, Cheepa Colony, Buth Muhala</p>
+    <p>Dadu, 76200</p>
 
 news: true # includes a list of news items
 latest_posts: true # includes a list of the newest posts
