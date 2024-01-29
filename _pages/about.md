@@ -1,4 +1,3 @@
----
 layout: about
 title: about
 permalink: /
@@ -13,6 +12,7 @@ profile:
     <p>House 980/11, Cheepa Colony, Buth Muhala</p>
     <p>Dadu, 76200</p>
 
+---
 news: true # includes a list of news items
 latest_posts: true # includes a list of the newest posts
 selected_papers: true # includes a list of papers marked as "selected={true}"
