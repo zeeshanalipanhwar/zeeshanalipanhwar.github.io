@@ -1,13 +1,234 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Professional Portfolio | Your Name</title>
+    <style>
+        /* --- CSS STYLES --- */
+        :root {
+            --primary: #2563eb;
+            --dark: #1e293b;
+            --light: #f8fafc;
+            --text: #334155;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text);
+            background-color: var(--light);
+        }
+
+        /* Sticky Navigation */
+        nav {
+            position: sticky;
+            top: 0;
+            background: var(--dark);
+            padding: 1rem 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        nav ul {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            flex-wrap: wrap;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            font-size: 0.9rem;
+            transition: color 0.3s;
+        }
+
+        nav a:hover, nav a.active {
+            color: var(--primary);
+        }
+
+        /* Layout Sections */
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        section {
+            padding: 60px 0;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        h1 { font-size: 3rem; color: var(--dark); margin-bottom: 0.5rem; }
+        h2 { color: var(--primary); margin-bottom: 1.5rem; border-left: 5px solid var(--primary); padding-left: 10px; }
+        h3 { margin-top: 1rem; color: var(--dark); }
+
+        .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+        
+        .card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            shadow: 0 4px 6px rgba(0,0,0,0.05);
+            margin-bottom: 1rem;
+        }
+
+        .badge {
+            display: inline-block;
+            background: #dbeafe;
+            color: var(--primary);
+            padding: 0.2rem 0.6rem;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            margin-right: 5px;
+        }
+
+        footer { text-align: center; padding: 2rem; background: var(--dark); color: white; }
+
+        @media (max-width: 768px) {
+            .grid { grid-template-columns: 1fr; }
+        }
+    </style>
 </head>
-
 <body>
-     <img src="/images/448885881_122153686826158022_7289494561354086463_n.jpg" alt="Profile Picture" width="128" height="128">
-    <h1>ZEESHAN ALI</h1>
-    A student of Computer Science, with specialization in Deep Learning, and a newbie researcher.
-</body>
 
+<nav id="navbar">
+    <ul>
+        <li><a href="#about">About</a></li>
+        <li><a href="#education">Education</a></li>
+        <li><a href="#industry">Industry</a></li>
+        <li><a href="#teaching">Teaching</a></li>
+        <li><a href="#publications">Publications</a></li>
+        <li><a href="#certifications">Certs</a></li>
+        <li><a href="#awards">Awards</a></li>
+        <li><a href="#hobbies">Hobbies</a></li>
+        <li><a href="#contact">Contact</a></li>
+    </ul>
+</nav>
+
+<div class="container">
+    <header style="text-align: center; padding: 50px 0;">
+        <h1>Your Name</h1>
+        <p>Researcher | Educator | Developer</p>
+    </header>
+
+    <section id="about">
+        <h2>About Me</h2>
+        <p>Hello! I am a passionate professional with a background in [Your Field]. I bridge the gap between academic research and industry application. My work focuses on [Key Interest] and [Key Interest].</p>
+    </section>
+
+    <section id="education">
+        <h2>Education</h2>
+        <div class="card">
+            <h3>Ph.D. in Computer Science</h3>
+            <p>University of Excellence | 2018 - 2022</p>
+        </div>
+        <div class="card">
+            <h3>B.S. in Software Engineering</h3>
+            <p>State Technical College | 2014 - 2018</p>
+        </div>
+    </section>
+
+    <section id="industry">
+        <h2>Industry Experience</h2>
+        <div class="card">
+            <h3>Senior Systems Architect</h3>
+            <p><strong>Tech Corp Global</strong> | 2022 - Present</p>
+            <ul>
+                <li>Led a team of 10 developers to build scalable cloud infrastructure.</li>
+                <li>Reduced latency by 40% using optimized Go routines.</li>
+            </ul>
+        </div>
+    </section>
+
+    <section id="teaching">
+        <h2>Teaching</h2>
+        <div class="card">
+            <h3>Adjunct Professor</h3>
+            <p>Undergraduate Data Structures (CS102) - Fall 2023</p>
+        </div>
+    </section>
+
+    <section id="publications">
+        <h2>Publications</h2>
+        <ul>
+            <li>"An Analysis of Neural Networks in Edge Computing" - <em>Journal of AI, 2023</em></li>
+            <li>"The Future of Decentralized Finance" - <em>Conference on Fintech, 2022</em></li>
+        </ul>
+    </section>
+
+    <section id="certifications">
+        <h2>Certifications</h2>
+        <span class="badge">AWS Solutions Architect</span>
+        <span class="badge">Google Data Analytics</span>
+        <span class="badge">Certified Scrum Master</span>
+    </section>
+
+    <section id="awards">
+        <h2>Honors & Awards</h2>
+        <p>🏆 <strong>Employee of the Year</strong> - Tech Corp (2024)</p>
+        <p>🥇 <strong>Best Paper Award</strong> - IEEE Symposium (2021)</p>
+    </section>
+
+    <section id="hobbies">
+        <h2>Hobbies</h2>
+        <div class="grid">
+            <div class="card">📸 Photography</div>
+            <div class="card">🧗 Rock Climbing</div>
+            <div class="card">🎸 Bass Guitar</div>
+            <div class="card">📖 Sci-Fi Literature</div>
+        </div>
+    </section>
+
+    <section id="contact">
+        <h2>Contact Me</h2>
+        <p>I'm always open to new collaborations!</p>
+        <div style="margin-top: 1rem;">
+            <p>📧 Email: <a href="mailto:hello@yourname.com">hello@yourname.com</a></p>
+            <p>🔗 LinkedIn: <a href="#">linkedin.com/in/yourname</a></p>
+        </div>
+    </section>
+</div>
+
+<footer>
+    <p>&copy; 2024 Your Name. Built with HTML, CSS, and JS.</p>
+</footer>
+
+<script>
+    // Smooth Scrolling for navigation links
+    document.querySelectorAll('nav a').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            e.preventDefault();
+            const section = document.querySelector(this.getAttribute('href'));
+            section.scrollIntoView({ behavior: 'smooth' });
+        });
+    });
+
+    // Highlight active section in Navbar on scroll
+    window.addEventListener('scroll', () => {
+        let current = '';
+        const sections = document.querySelectorAll('section');
+        const navItems = document.querySelectorAll('nav a');
+
+        sections.forEach(section => {
+            const sectionTop = section.offsetTop;
+            if (pageYOffset >= sectionTop - 100) {
+                current = section.getAttribute('id');
+            }
+        });
+
+        navItems.forEach(a => {
+            a.classList.remove('active');
+            if (a.getAttribute('href').includes(current)) {
+                a.classList.add('active');
+            }
+        });
+    });
+</script>
+
+</body>
 </html>
