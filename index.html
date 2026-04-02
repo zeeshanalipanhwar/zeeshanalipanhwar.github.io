@@ -1,202 +1,266 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="system">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Zeeshan Ali | Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
     <style>
-        :root {
-            --primary: #0f172a;
+        /* --- THEME VARIABLES --- */
+        :root[data-theme="light"] {
+            --bg: #f8fafc;
+            --sidebar: #ffffff;
+            --sidebar-text: #1e293b;
             --accent: #3b82f6;
-            --white: #ffffff;
-            --nav-width: 280px;
+            --text: #1e293b;
+            --dim: #64748b;
+            --card-bg: #ffffff;
+            --border: #e2e8f0;
+        }
+
+        :root[data-theme="dark"] {
+            --bg: #020617;
+            --sidebar: #000000;
+            --sidebar-text: #94a3b8;
+            --accent: #3b82f6;
+            --text: #f8fafc;
+            --dim: #94a3b8;
+            --card-bg: rgba(255, 255, 255, 0.03);
+            --border: rgba(255, 255, 255, 0.1);
+        }
+
+        /* System Theme Logic */
+        @media (prefers-color-scheme: dark) {
+            :root[data-theme="system"] {
+                --bg: #020617; --sidebar: #000000; --sidebar-text: #94a3b8;
+                --accent: #3b82f6; --text: #f8fafc; --dim: #94a3b8;
+                --card-bg: rgba(255, 255, 255, 0.03); --border: rgba(255, 255, 255, 0.1);
+            }
+        }
+        @media (prefers-color-scheme: light) {
+            :root[data-theme="system"] {
+                --bg: #f8fafc; --sidebar: #ffffff; --sidebar-text: #1e293b;
+                --accent: #3b82f6; --text: #1e293b; --dim: #64748b;
+                --card-bg: #ffffff; --border: #e2e8f0;
+            }
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; }
-        
-        html {
-            scroll-behavior: smooth;
-            /* This ensures each section stops exactly at the top */
-            scroll-snap-type: y mandatory;
-        }
+        html { scroll-behavior: smooth; scroll-snap-type: y mandatory; }
+        body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); display: flex; transition: background 0.3s, color 0.3s; }
 
-        body {
-            font-family: 'Inter', sans-serif;
-            background: #f1f5f9;
-            display: flex;
+        /* --- THEME SWITCHER UI --- */
+        .theme-switcher {
+            position: fixed; top: 20px; right: 20px; z-index: 2000;
+            background: var(--sidebar); border: 1px solid var(--border);
+            padding: 5px; border-radius: 50px; display: flex; gap: 5px;
         }
+        .theme-btn {
+            border: none; background: none; cursor: pointer; padding: 8px 12px;
+            border-radius: 50px; font-size: 0.7rem; font-weight: bold;
+            color: var(--dim); transition: 0.3s;
+        }
+        .theme-btn.active { background: var(--accent); color: white; }
 
-        /* Sidebar remains fixed */
+        /* --- SIDEBAR --- */
         nav {
-            width: var(--nav-width);
-            height: 100vh;
-            background: var(--primary);
-            position: fixed;
-            padding: 2rem 1rem;
-            z-index: 100;
+            width: 280px; height: 100vh; background: var(--sidebar);
+            position: fixed; display: flex; flex-direction: column;
+            padding: 2rem 1.5rem; border-right: 1px solid var(--border); z-index: 1000;
         }
-
-        nav h1 { color: var(--accent); font-size: 1.5rem; margin-bottom: 2rem; text-align: center; }
-
-        nav ul { list-style: none; }
+        .profile-header h1 { font-size: 1.4rem; font-weight: 800; color: var(--sidebar-text); }
+        .profile-header span { color: var(--accent); }
+        nav ul { list-style: none; overflow-y: auto; flex-grow: 1; margin-top: 2rem; }
         nav a {
-            color: #94a3b8;
-            text-decoration: none;
-            display: block;
-            padding: 0.8rem;
-            border-radius: 8px;
-            transition: 0.3s;
-            font-size: 0.9rem;
+            text-decoration: none; color: var(--dim); font-size: 0.8rem;
+            font-weight: 600; text-transform: uppercase; display: block;
+            padding: 10px; border-radius: 6px; transition: 0.3s;
         }
+        nav a:hover, nav a.active { color: var(--accent); background: rgba(59, 130, 246, 0.1); }
 
-        nav a:hover, nav a.active {
-            background: rgba(59, 130, 246, 0.15);
-            color: white;
-        }
-
-        /* Main Content Styling */
-        main {
-            margin-left: var(--nav-width);
-            width: calc(100% - var(--nav-width));
-        }
-
+        /* --- CONTENT --- */
+        main { margin-left: 280px; width: calc(100% - 280px); }
         section {
-            /* Makes each section fill the screen */
-            min-height: 100vh;
-            padding: 4rem;
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-start;
-            border-bottom: 1px solid #e2e8f0;
-            background: white;
-            /* Mandatory snap point */
-            scroll-snap-align: start;
+            min-height: 100vh; width: 100%; scroll-snap-align: start;
+            padding: 5rem 10%; display: flex; flex-direction: column;
+            justify-content: flex-start; border-bottom: 1px solid var(--border);
         }
-
-        h2 {
-            font-size: 2.2rem;
-            color: var(--primary);
-            margin-bottom: 2rem;
-            border-left: 6px solid var(--accent);
-            padding-left: 15px;
-        }
-
+        h2 { font-size: 3rem; font-weight: 800; margin-bottom: 2rem; color: var(--accent); }
         .card {
-            background: #f8fafc;
-            padding: 2rem;
-            border-radius: 12px;
-            border: 1px solid #e2e8f0;
-            margin-bottom: 1.5rem;
+            background: var(--card-bg); padding: 2rem; border-radius: 15px;
+            border: 1px solid var(--border); transition: 0.3s; margin-bottom: 1.5rem;
         }
+        .meta { color: var(--accent); font-family: 'Fira Code', monospace; font-size: 0.85rem; margin-bottom: 10px; display: block; }
+        ul.details { list-style: none; margin-top: 10px; }
+        ul.details li { color: var(--dim); font-size: 0.9rem; margin-bottom: 8px; position: relative; padding-left: 20px; }
+        ul.details li::before { content: '▹'; position: absolute; left: 0; color: var(--accent); }
 
-        .meta { font-weight: bold; color: var(--accent); margin-bottom: 0.5rem; }
-
-        @media (max-width: 768px) {
-            nav { width: 100%; height: auto; position: relative; }
-            main { margin-left: 0; width: 100%; }
-            section { padding: 2rem; }
+        @media (max-width: 1024px) {
+            nav { display: none; } main { margin-left: 0; width: 100%; }
+            section { padding: 80px 5%; }
         }
     </style>
 </head>
 <body>
 
+<div class="theme-switcher">
+    <button class="theme-btn" onclick="setTheme('light')">Light</button>
+    <button class="theme-btn" onclick="setTheme('dark')">Dark</button>
+    <button class="theme-btn active" onclick="setTheme('system')">System</button>
+</div>
+
 <nav>
-    <h1>Zeeshan Ali</h1>
+    <div class="profile-header"><h1>ZEESHAN<span>.ALI</span></h1></div>
     <ul>
-        <li><a href="#summary">Summary</a></li>
-        <li><a href="#experience">Experience</a></li>
+        <li><a href="#about" class="active">About</a></li>
+        <li><a href="#industry">Industry</a></li>
+        <li><a href="#teaching">Teaching</a></li>
         <li><a href="#education">Education</a></li>
         <li><a href="#projects">Projects</a></li>
         <li><a href="#publications">Publications</a></li>
+        <li><a href="#volunteering">Volunteering</a></li>
+        <li><a href="#skills">Skills</a></li>
         <li><a href="#contact">Contact</a></li>
     </ul>
 </nav>
 
 <main>
-    <section id="summary">
-        <h2>Summary</h2>
+    <section id="about">
+        <h2>About <span style="color:var(--text)">Me</span></h2>
         <div class="card">
-            <p>I am a postgraduate in Computer Science, specializing in Deep Learning[cite: 5]. I have worked as a Math & Computer Science Teacher at SundarSTEM School[cite: 6]. My postgraduate thesis produced a Sindhi Ligature Recognition dataset for Document Processing[cite: 6].</p>
+            <p style="font-size: 1.1rem; line-height: 1.8;">
+                Postgraduate in <strong>Computer Science</strong> specializing in <strong>Deep Learning</strong>[cite: 2, 5]. 
+                Expert in document processing with a focus on <strong>Sindhi Ligature Recognition</strong>. 
+                Proven educator in competitive programming and advanced mathematics[cite: 6, 12, 13].
+            </p>
         </div>
     </section>
 
-    <section id="experience">
-        <h2>Experience</h2>
+    <section id="industry">
+        <h2>Indus<span style="color:var(--text)">try</span></h2>
         <div class="card">
-            <p class="meta">Mar 2022 – Sep 2024</p>
-            <h3>Math & Computer Science Teacher</h3>
-            <p>SundarSTEM School, Lahore[cite: 10, 11]. Prepared students for the International Olympiads of Informatics (IoI)[cite: 12]. Taught Algorithmic Problem Solving, Discrete Mathematics, and C++[cite: 19, 20, 21].</p>
+            <span class="meta">Jul 2018 – Aug 2019</span>
+            <h3>Research Engineer | Knowledge Platform</h3>
+            <ul class="details">
+                <li>Developed an NLP language checker for non-native writers[cite: 8, 41].</li>
+                <li>Utilized SpaCy, NLTK, RegEx, and Python[cite: 48, 49].</li>
+            </ul>
         </div>
         <div class="card">
-            <p class="meta">Jul 2018 – Aug 2019</p>
-            <h3>Research Engineer</h3>
-            <p>Knowledge Platform, Islamabad[cite: 40, 41]. Developed a language checker for non-native writers using NLP tools like SpaCy and NLTK[cite: 8, 49].</p>
+            <span class="meta">Oct 2021 – Jan 2022</span>
+            <h3>Machine Learning Engineer | Neurog</h3>
+            <ul class="details">
+                <li>Built interactive dashboards for Data Analysis using PyMongo and MySQL[cite: 28, 29].</li>
+            </ul>
+        </div>
+    </section>
+
+    <section id="teaching">
+        <h2>Teach<span style="color:var(--text)">ing</span></h2>
+        <div class="card">
+            <span class="meta">Mar 2022 – Sep 2024</span>
+            <h3>Teacher | SundarSTEM School</h3>
+            <ul class="details">
+                <li>Prepared students for the <strong>International Olympiads of Informatics (IoI)</strong>[cite: 12].</li>
+                <li>Taught Algorithmic Problem Solving, Discrete Mathematics, and AoPS Algebra/Geometry[cite: 19, 21, 22].</li>
+                <li>Instruction in C++ and Python (Intro to Intermediate)[cite: 16, 17, 18, 19].</li>
+            </ul>
         </div>
     </section>
 
     <section id="education">
-        <h2>Education</h2>
+        <h2>Edu<span style="color:var(--text)">cation</span></h2>
         <div class="card">
-            <p class="meta">2019 – 2023</p>
-            <h3>MS, Computer Science</h3>
-            <p>NUST, Islamabad[cite: 51, 52]. Specialization in Computer Vision and Deep Learning[cite: 53]. CGPA: 3.70/4.00[cite: 55].</p>
+            <span class="meta">2019 – 2023</span>
+            <h3>MS in Computer Science | NUST</h3>
+            <p>CGPA: 3.70/4.00[cite: 55]. Specialization in <strong>Computer Vision & Deep Learning</strong>[cite: 53].</p>
         </div>
         <div class="card">
-            <p class="meta">2014 – 2018</p>
-            <h3>BS, Computer Science</h3>
-            <p>FAST NUCES, Islamabad[cite: 56, 57]. Specialized in Deep Learning and Bioinformatics[cite: 58].</p>
+            <span class="meta">2014 – 2018</span>
+            <h3>BS in Computer Science | FAST NUCES</h3>
+            <p>Specialization in Deep Learning & Bioinformatics[cite: 58]. PM’s National ICT Scholarship recipient[cite: 98].</p>
         </div>
     </section>
 
     <section id="projects">
-        <h2>Projects</h2>
+        <h2>Pro<span style="color:var(--text)">jects</span></h2>
         <div class="card">
-            <h3>Deep Learning & Vision</h3>
-            <ul>
-                <li>Semantic Segmentation of Nuclei in Digital Histology Images[cite: 76].</li>
-                <li>Brain Tumor Auto-Segmentation for MRI using 3D CNNs[cite: 82, 83].</li>
+            <h3>Deep Learning & Medical Imaging</h3>
+            <ul class="details">
+                <li>Semantic Segmentation of Nuclei in Histology Images[cite: 76].</li>
+                <li>Brain Tumor Auto-Segmentation for MRI (3D-UNet)[cite: 82, 83].</li>
+                <li>Chest X-Ray Medical Diagnosis (DenseNet)[cite: 80, 81].</li>
                 <li>Car detection with YOLO[cite: 84, 85].</li>
             </ul>
         </div>
     </section>
 
     <section id="publications">
-        <h2>Publications</h2>
+        <h2>Publi<span style="color:var(--text)">cations</span></h2>
         <div class="card">
-            <p>"A Large-Scale Font-Diverse Sindhi Ligature Recognition System", published at the International Conference on Frontiers of Information Technology, Dec 2023[cite: 62].</p>
+            <p><strong>"A Large-Scale Font-Diverse Sindhi Ligature Recognition System"</strong>[cite: 62].</p>
+            <p>Published in the International Conference on Frontiers of Information Technology, Dec 2023[cite: 62].</p>
+        </div>
+    </section>
+
+    <section id="volunteering">
+        <h2>Volun<span style="color:var(--text)">teering</span></h2>
+        <div class="card">
+            <h3>Team Leader | IATI Pakistan</h3>
+            <p>Led Pakistan's Junior Informatics teams (2022 & 2024); students won <strong>1 Gold, 2 Silver, and 2 Bronze</strong> medals[cite: 70, 72, 74].</p>
+        </div>
+        <div class="card">
+            <h3>Moderator | Brilliant.org</h3>
+            <p>Contributed to problem publishing and verification (2016 – 2023)[cite: 65, 66].</p>
+        </div>
+    </section>
+
+    <section id="skills">
+        <h2>Expert<span style="color:var(--text)">ise</span></h2>
+        <div class="card">
+            <p><strong>Languages:</strong> Python (Expert), C++ (Intermediate), R (Beginner)[cite: 118].</p>
+            <p><strong>Tools:</strong> Keras, TensorFlow, PyTorch, OpenCV, SpaCy, NLTK, Pandas[cite: 120].</p>
+            <p><strong>Interpersonal:</strong> Problem solving, Critical thinking, Teamwork, Management[cite: 122].</p>
         </div>
     </section>
 
     <section id="contact">
-        <h2>Contact Me</h2>
+        <h2>Con<span style="color:var(--text)">tact</span></h2>
         <div class="card">
             <p>📍 Cheepa Colony, Buth Muhalla, Dadu, Sindh, Pakistan[cite: 3].</p>
-            <p>📧 Email: zapt1860@gmail.com [cite: 3]</p>
-            <p>📞 Contact: +923410881676 [cite: 3]</p>
-            <p>🔗 LinkedIn: <a href="https://linkedin.com/in/zeeshan-ali-panhwar/">zeeshan-ali-panhwar</a> [cite: 3]</p>
+            <p>📞 +923410881676 [cite: 3] | 📧 <a href="mailto:zapt1860@gmail.com">zapt1860@gmail.com</a> [cite: 3]</p>
+            <p>🔗 <a href="https://linkedin.com/in/zeeshan-ali-panhwar/">LinkedIn</a> | <a href="https://github.com/zeeshanalipanhwar">GitHub</a> [cite: 3]</p>
         </div>
     </section>
 </main>
 
 <script>
-    const links = document.querySelectorAll('nav a');
-    const sections = document.querySelectorAll('section');
+    // Theme Switcher Logic
+    function setTheme(theme) {
+        document.documentElement.setAttribute('data-theme', theme);
+        localStorage.setItem('portfolio-theme', theme);
+        
+        document.querySelectorAll('.theme-btn').forEach(btn => {
+            btn.classList.remove('active');
+            if(btn.innerText.toLowerCase() === theme) btn.classList.add('active');
+        });
+    }
 
-    // Highlight active link on scroll
+    // Initialize Theme
+    const savedTheme = localStorage.getItem('portfolio-theme') || 'system';
+    setTheme(savedTheme);
+
+    // Navigation Active State
+    const sections = document.querySelectorAll('section');
+    const navLinks = document.querySelectorAll('nav a');
     window.addEventListener('scroll', () => {
         let current = "";
         sections.forEach(section => {
-            const sectionTop = section.offsetTop;
-            if (pageYOffset >= sectionTop - 60) {
-                current = section.getAttribute("id");
-            }
+            if (pageYOffset >= (section.offsetTop - 100)) current = section.getAttribute("id");
         });
-
-        links.forEach(link => {
+        navLinks.forEach(link => {
             link.classList.remove("active");
-            if (link.getAttribute("href").includes(current)) {
-                link.classList.add("active");
-            }
+            if (link.getAttribute("href").includes(current)) link.classList.add("active");
         });
     });
 </script>
