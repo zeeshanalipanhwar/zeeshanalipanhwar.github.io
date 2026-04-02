@@ -3,61 +3,52 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Zeeshan Ali | Deep Learning & Computing Science</title>
+    <title>Zeeshan Ali | Deep Learning & Computing Science Portfolio</title>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
     <style>
         :root[data-theme="light"] {
             --bg: #fdfdfd; --sidebar: #ffffff; --text: #0f172a; --dim: #64748b;
             --accent: #3b82f6; --card: #ffffff; --border: rgba(0,0,0,0.05);
-            --gradient: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
         }
         :root[data-theme="dark"] {
             --bg: #020617; --sidebar: #000000; --text: #f8fafc; --dim: #94a3b8;
             --accent: #3b82f6; --card: rgba(255,255,255,0.03); --border: rgba(255,255,255,0.1);
-            --gradient: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
         }
 
-        * { box-sizing: border-box; margin: 0; padding: 0; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
+        * { box-sizing: border-box; margin: 0; padding: 0; transition: all 0.3s ease; }
         html { scroll-behavior: smooth; scroll-snap-type: y mandatory; }
-        body { font-family: 'Plus Jakarta Sans', sans-serif; background: var(--bg); color: var(--text); display: flex; }
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background: var(--bg); color: var(--text); display: flex; overflow-x: hidden; }
 
-        /* --- UI Controls --- */
-        .controls { position: fixed; top: 25px; right: 25px; z-index: 2000; display: flex; gap: 10px; background: var(--card); padding: 5px; border-radius: 50px; border: 1px solid var(--border); backdrop-filter: blur(10px); }
+        /* UI Controls */
+        .controls { position: fixed; top: 25px; right: 25px; z-index: 2000; display: flex; gap: 8px; background: var(--card); padding: 5px; border-radius: 50px; border: 1px solid var(--border); backdrop-filter: blur(10px); }
         .t-btn { border: none; background: none; cursor: pointer; padding: 8px 15px; border-radius: 50px; font-size: 11px; font-weight: 800; color: var(--dim); text-transform: uppercase; }
         .t-btn.active { background: var(--accent); color: white; }
 
-        /* --- Modern Sidebar --- */
-        nav { width: 300px; height: 100vh; background: var(--sidebar); position: fixed; padding: 3rem 2rem; border-right: 1px solid var(--border); display: flex; flex-direction: column; z-index: 1000; }
-        .logo { font-size: 1.6rem; font-weight: 800; letter-spacing: -1.5px; margin-bottom: 3rem; }
+        /* Sidebar */
+        nav { width: 280px; height: 100vh; background: var(--sidebar); position: fixed; padding: 2.5rem 1.5rem; border-right: 1px solid var(--border); display: flex; flex-direction: column; z-index: 1000; }
+        .logo { font-size: 1.4rem; font-weight: 800; letter-spacing: -1px; margin-bottom: 2.5rem; }
         .logo span { color: var(--accent); }
         nav ul { list-style: none; overflow-y: auto; flex-grow: 1; }
-        nav a { text-decoration: none; color: var(--dim); font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; display: block; padding: 12px; border-radius: 12px; margin-bottom: 4px; }
-        nav a:hover, nav a.active { color: var(--accent); background: rgba(59,130,246,0.1); padding-left: 20px; }
+        nav a { text-decoration: none; color: var(--dim); font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; display: block; padding: 12px; border-radius: 12px; margin-bottom: 4px; }
+        nav a:hover, nav a.active { color: var(--accent); background: rgba(59,130,246,0.1); padding-left: 18px; }
 
-        /* --- Sections --- */
-        main { margin-left: 300px; width: 100%; }
-        section { min-height: 100vh; padding: 6rem 10%; scroll-snap-align: start; display: flex; flex-direction: column; justify-content: center; border-bottom: 1px solid var(--border); }
-        h2 { font-size: 4rem; font-weight: 800; margin-bottom: 2rem; letter-spacing: -2px; line-height: 1; }
+        /* Sections */
+        main { margin-left: 280px; width: 100%; }
+        section { min-height: 100vh; padding: 6rem 8%; scroll-snap-align: start; display: flex; flex-direction: column; justify-content: center; border-bottom: 1px solid var(--border); }
+        h2 { font-size: 3.5rem; font-weight: 800; margin-bottom: 2rem; letter-spacing: -2px; line-height: 1; }
         .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1.5rem; }
         
-        .card { background: var(--card); padding: 2.5rem; border-radius: 24px; border: 1px solid var(--border); backdrop-filter: blur(20px); position: relative; overflow: hidden; }
-        .card:hover { border-color: var(--accent); transform: scale(1.02); }
-        .card h3 { font-size: 1.4rem; margin-bottom: 10px; }
-        .tag { display: inline-block; background: rgba(59,130,246,0.1); color: var(--accent); padding: 5px 12px; border-radius: 8px; font-size: 11px; font-weight: 800; margin: 4px; border: 1px solid rgba(59,130,246,0.2); }
+        .card { background: var(--card); padding: 2rem; border-radius: 20px; border: 1px solid var(--border); backdrop-filter: blur(15px); }
+        .meta { font-family: 'Fira Code', monospace; color: var(--accent); font-size: 12px; margin-bottom: 8px; display: block; }
+        .tag { display: inline-block; background: rgba(59,130,246,0.1); color: var(--accent); padding: 4px 12px; border-radius: 6px; font-size: 11px; font-weight: 700; margin: 3px; border: 1px solid rgba(59,130,246,0.2); }
         
-        .meta-label { font-family: 'Fira Code', monospace; color: var(--accent); font-size: 12px; margin-bottom: 12px; display: block; }
         ul.list { list-style: none; margin-top: 15px; }
-        ul.list li { color: var(--dim); font-size: 14px; margin-bottom: 10px; padding-left: 20px; position: relative; }
+        ul.list li { color: var(--dim); font-size: 14px; margin-bottom: 8px; padding-left: 18px; position: relative; }
         ul.list li::before { content: '→'; position: absolute; left: 0; color: var(--accent); }
 
-        /* --- Specific Styles --- */
-        .hero-text { font-size: 1.5rem; color: var(--dim); max-width: 600px; }
-        .stat-circle { width: 50px; height: 50px; background: var(--accent); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-weight: 800; margin-bottom: 15px; }
+        blockquote { font-style: italic; color: var(--dim); border-left: 4px solid var(--accent); padding-left: 1.5rem; margin: 1.5rem 0; font-size: 1.1rem; }
 
-        @media (max-width: 1100px) {
-            nav { display: none; } main { margin-left: 0; }
-            section { padding: 4rem 5%; } h2 { font-size: 2.5rem; }
-        }
+        @media (max-width: 1024px) { nav { display: none; } main { margin-left: 0; } section { padding: 4rem 5%; } h2 { font-size: 2.2rem; } }
     </style>
 </head>
 <body>
@@ -72,130 +63,169 @@
     <div class="logo">ZEESHAN<span>.ALI</span></div>
     <ul>
         <li><a href="#home" class="active">Home</a></li>
-        <li><a href="#exp">Experience</a></li>
-        <li><a href="#teaching">Teaching</a></li>
-        <li><a href="#edu">Education</a></li>
-        <li><a href="#projects">Portfolio</a></li>
-        <li><a href="#certs">Certs</a></li>
-        <li><a href="#vol">Volunteer</a></li>
+        <li><a href="#summary">Summary</a></li>
+        <li><a href="#exp">Professional Experience</a></li>
+        <li><a href="#teaching">Teaching Track</a></li>
+        <li><a href="#edu">Academic Path</a></li>
+        <li><a href="#projects">Tech Portfolio</a></li>
+        <li><a href="#certs">Certs & Skills</a></li>
+        <li><a href="#honors">Honors</a></li>
         <li><a href="#contact">Contact</a></li>
     </ul>
 </nav>
 
 <main>
     <section id="home">
-        <span class="meta-label">Based in Dadu, Pakistan</span>
-        <h2>Deep Learning<br><span style="color:var(--accent)">Specialist.</span></h2>
-        <p class="hero-text">Postgraduate in Computing Science with a focus on Sindhi Ligature Recognition, NLP research, and Competitive Programming education.</p>
+        <span class="meta">Teacher & Deep Learning Researcher</span>
+        <h2>Computational<br><span style="color:var(--accent)">Excellence.</span></h2>
+        <p style="font-size: 1.3rem; color: var(--dim);">Bridging the gap between mathematical modeling and artificial intelligence.</p>
+    </section>
+
+    <section id="summary">
+        <h2>The <span style="color:var(--accent)">Summary</span></h2>
+        <div class="card">
+            <p style="font-size: 1.2rem; line-height: 1.8;">A passionate teacher [cite: 156] and postgraduate in Computer Science specializing in <strong>Deep Learning</strong>[cite: 5]. From leading international informatics teams to developing Tableau dashboards [cite: 186] and NLP checkers[cite: 200], my work is driven by the art of problem-solving.</p>
+            <blockquote>"Democracy is a kind of government, in which individuals are counted and not weighed." — Iqbal [cite: 163]</blockquote>
+        </div>
     </section>
 
     <section id="exp">
-        <h2>Industry <span style="color:var(--accent)">Track</span></h2>
+        <h2>Industry <span style="color:var(--accent)">Experience</span></h2>
         <div class="grid">
             <div class="card">
-                <span class="meta-label">2018 — 2019</span>
-                <h3>Research Engineer</h3>
-                <p>Knowledge Platform, Islamabad</p>
+                <span class="meta">Oct 2021 – Jan 2022</span>
+                <h3>Machine Learning Engineer</h3>
+                <p><strong>Neurog</strong>, Islamabad</p>
                 <ul class="list">
-                    <li>Developed an NLP language checker for non-native writers.</li>
-                    <li>Executed text mining & implementation using SpaCy, NLTK, and RegEx.</li>
+                    <li>Developed Tableau dashboards and analytical sheets[cite: 186].</li>
+                    <li>Environment: Python, PyMongo, MySQL[cite: 29].</li>
                 </ul>
             </div>
             <div class="card">
-                <span class="meta-label">2021 — 2022</span>
-                <h3>ML Engineer</h3>
-                <p>Neurog, Islamabad</p>
+                <span class="meta">Jul 2018 – Aug 2019</span>
+                <h3>Research Engineer</h3>
+                <p><strong>Knowledge Platform</strong>, Islamabad</p>
                 <ul class="list">
-                    <li>Developed interactive dashboards for high-level Data Analysis.</li>
-                    <li>Stack: Python, PyMongo, MySQL, Tableau.</li>
+                    <li>Developed a specialized Language Checker for non-native writers[cite: 200].</li>
+                    <li>Focused on NLP advancements and workflow development[cite: 203, 204].</li>
                 </ul>
             </div>
         </div>
     </section>
 
     <section id="teaching">
-        <h2>Educator <span style="color:var(--accent)">Profile</span></h2>
-        <div class="card">
-            <span class="meta-label">Mar 2022 – Sep 2024 | SundarSTEM School</span>
-            <h3>Math & Computer Science Teacher</h3>
-            <p style="color:var(--dim); margin-bottom: 20px;">Coached students for the International Olympiads of Informatics (IoI). Specialized in competitive problem solving and higher-level mathematics.</p>
-            <div class="tag-container">
-                <span class="tag">Competitive Programming</span> <span class="tag">Discrete Math</span> <span class="tag">Algorithms</span> 
-                <span class="tag">AoPS Algebra</span> <span class="tag">AoPS Geometry</span> <span class="tag">Python</span> <span class="tag">C++</span>
+        <h2>Teaching <span style="color:var(--accent)">Impact</span></h2>
+        <div class="grid">
+            <div class="card">
+                <span class="meta">Jan 2026 – Present</span>
+                <h3>Mathematics Teacher</h3>
+                <p><strong>Pakistan STEM School</strong></p>
+                <p>Current: Introduction to Counting and Probability (AoPS).</p>
+            </div>
+            <div class="card">
+                <span class="meta">Mar 2022 – Sep 2024</span>
+                <h3>Math & CS Teacher</h3>
+                <p><strong>Sundar STEM School</strong></p>
+                <p>Olympiad Coach (IOI & IMO)[cite: 168]. Subjects included Discrete Math, Algorithms, and Python/C++ programming [cite: 171-179].</p>
+            </div>
+            <div class="card">
+                <span class="meta">2020 – 2021</span>
+                <h3>Teaching Assistant</h3>
+                <p><strong>NUST</strong>, Islamabad</p>
+                <ul class="list">
+                    <li>TA for Postgraduate Machine Learning[cite: 191].</li>
+                    <li>TA for Speech and Image Processing[cite: 195].</li>
+                </ul>
             </div>
         </div>
     </section>
 
     <section id="edu">
-        <h2>Academic <span style="color:var(--accent)">Journey</span></h2>
+        <h2>Academic <span style="color:var(--accent)">Path</span></h2>
         <div class="grid">
             <div class="card">
-                <span class="meta-label">NUST | CGPA 3.70</span>
-                <h3>MS Computing Science</h3>
-                <p>Thesis: A Large-Scale Font-Diverse Sindhi Ligature Recognition System (FIT 2023).</p>
+                <span class="meta">2019 – 2023</span>
+                <h3>MS Computer Science</h3>
+                <p>NUST, Islamabad[cite: 51]. Specialized in Deep Learning & Computer Vision[cite: 53].</p>
             </div>
             <div class="card">
-                <span class="meta-label">FAST NUCES | scholarship</span>
+                <span class="meta">2014 – 2018</span>
                 <h3>BS Computer Science</h3>
-                <p>Specialized in Deep Learning & Bioinformatics. PM's National ICT Scholarship recipient.</p>
+                <p>FAST NUCES, Islamabad[cite: 56]. Specialized in Bioinformatics & Deep Learning[cite: 58].</p>
+            </div>
+            <div class="card">
+                <span class="meta">Secondary Schooling</span>
+                <h3>HSC & SSC</h3>
+                <p>Engineering at Govt. High School, Dadu[cite: 211, 212]. SSC (Biology) at Army Public School (APSACS)[cite: 213, 214].</p>
             </div>
         </div>
     </section>
 
     <section id="projects">
-        <h2>AI <span style="color:var(--accent)">Showcase</span></h2>
+        <h2>AI <span style="color:var(--accent)">Portfolio</span></h2>
         <div class="grid">
             <div class="card">
-                <div class="stat-circle">01</div>
-                <h3>Medical AI</h3>
-                <p>Brain Tumor Auto-Segmentation (3D-UNet), Nuclei Segmentation in Histology, and Chest X-Ray Diagnosis.</p>
-            </div>
-            <div class="card">
-                <div class="stat-circle">02</div>
                 <h3>Computer Vision</h3>
-                <p>Real-time car detection via YOLO and image feature matching via SIFT/SURF descriptors.</p>
+                <p>Sindhi Ligature Recognition (Thesis), YOLO car detection, and Histology image segmentation [cite: 75-85].</p>
             </div>
             <div class="card">
-                <div class="stat-circle">03</div>
                 <h3>Bioinformatics</h3>
-                <p>Metropolis Monte Carlo Simulation for stable conformations of 2D HP protein models.</p>
+                <p>Metropolis Monte Carlo Simulation for protein conformations[cite: 90, 91].</p>
+            </div>
+            <div class="card">
+                <h3>Speech & NLP</h3>
+                <p>Speaker verification using 3D CNNs and text-to-speech conversion[cite: 92, 93].</p>
             </div>
         </div>
     </section>
 
     <section id="certs">
-        <h2>Certifi<span style="color:var(--accent)">cations</span></h2>
+        <h2>Skills & <span style="color:var(--accent)">Certs</span></h2>
         <div class="card">
-            <h3>DeepLearning.AI</h3>
+            <h3>Certifications</h3>
             <div class="tag-container">
-                <span class="tag">AI for Medicine</span> <span class="tag">TensorFlow Developer</span> <span class="tag">NLP Specialization</span>
-                <span class="tag">Deep Learning</span> <span class="tag">Sequence Models</span>
+                <span class="tag">Math for ML Specialization</span> <span class="tag">TensorFlow Developer</span>
+                <span class="tag">NLP with Probabilistic Models</span> <span class="tag">Intro to R</span>
+                <span class="tag">Python for Data Science</span> <span class="tag">Deep Learning Specialization</span>
             </div>
-            <h3 style="margin-top: 2rem;">Imperial College London</h3>
-            <span class="tag">Mathematics for Machine Learning</span>
+            <h3 style="margin-top:2rem">Top Skills</h3>
+            <div class="tag-container">
+                <span class="tag">Mathematical Modeling</span> <span class="tag">Data Science</span>
+                <span class="tag">Machine Learning Algorithms</span> <span class="tag">Competitive Programming</span>
+            </div>
         </div>
     </section>
 
-    <section id="vol">
-        <h2>Volun<span style="color:var(--accent)">teer</span></h2>
-        <div class="card">
-            <h3>IATI Team Leader</h3>
-            <p>Led Pakistan's official Junior Informatics teams (2022 & 2024). Students secured 1 Gold, 2 Silver, and 2 Bronze medals.</p>
-            <br>
-            <h3>Brilliant.org</h3>
-            <p>Global Moderator and Publisher (2016-2023). Verified and published mathematical challenges.</p>
+    <section id="honors">
+        <h2>Awards & <span style="color:var(--accent)">Honors</span></h2>
+        <div class="grid">
+            <div class="card">
+                <h3>Scholarships</h3>
+                <p>PM's National ICT Scholarship (Full BS merit scholarship)[cite: 98, 146].</p>
+            </div>
+            <div class="card">
+                <h3>Competitions</h3>
+                <p>Runner-up in Math-Magician[cite: 95]. 3rd Position in RTJ Pre-Engineering SAT[cite: 148].</p>
+            </div>
+            <div class="card">
+                <h3>Teaching Success</h3>
+                <p>Official Team Leader for Pakistan at IATI. Students won Gold, Silver, and Bronze medals[cite: 72, 74].</p>
+            </div>
         </div>
     </section>
 
     <section id="contact">
-        <h2>Let's <span style="color:var(--accent)">Connect.</span></h2>
+        <h2>Get In <span style="color:var(--accent)">Touch.</span></h2>
         <div class="card">
-            <p>Cheepa Colony, Buth Muhalla, Dadu, Sindh, Pakistan</p>
-            <p style="font-size: 2rem; font-weight: 800; margin: 20px 0;">zapt1860@gmail.com</p>
+            <p>Dadu, Sindh, Pakistan [cite: 124]</p>
+            <p style="font-size: 2.2rem; font-weight: 800; margin: 1.5rem 0;">zapt1860@gmail.com</p>
             <div class="tag-container">
-                <a href="https://linkedin.com/in/zeeshan-ali-panhwar/" target="_blank" class="tag">LinkedIn</a>
-                <a href="https://github.com/zeeshanalipanhwar" target="_blank" class="tag">GitHub</a>
+                <a href="https://linkedin.com/in/zeeshan-ali-panhwar" target="_blank" class="tag">LinkedIn Profile</a>
+                <a href="https://github.com/zeeshanalipanhwar" target="_blank" class="tag">GitHub Portfolio</a>
                 <span class="tag">+923410881676</span>
+            </div>
+            <div style="margin-top:2rem; font-size:0.9rem; color:var(--dim)">
+                <strong>Languages:</strong> English, Urdu, Sindhi [cite: 124]
             </div>
         </div>
     </section>
